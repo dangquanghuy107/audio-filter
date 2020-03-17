@@ -3,11 +3,15 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 
 import AudioVisual from 'vue-audio-visual'
+import VueRouter from 'vue-router'
+import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(AudioVisual)
+Vue.use(VueRouter)
 
 new Vue({
+  render: h => h(App),
   vuetify,
-  render: h => h(App)
+  router,
 }).$mount('#app')
