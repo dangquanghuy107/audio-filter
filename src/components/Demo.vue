@@ -3,10 +3,10 @@
         <div v-for="file in file_names" :key=file> 
             <h2>{{file}}</h2>
             <h3>Input</h3>
-                <av-waveform :playtime-clickable="true" :audio-src="'http://localhost:8000/demo/input/' + file">
+                <av-waveform :playtime-clickable="true" :audio-src="API_URL + '/demo/input/' + file">
                 </av-waveform>
             <h3>Output</h3>
-                <av-waveform :audio-src="'http://localhost:8000/demo/output/' + file">
+                <av-waveform :audio-src="API_URL + '/demo/output/' + file">
                 </av-waveform>
         </div>
     </div>
@@ -15,15 +15,18 @@
 <script>
 import axios from 'axios'
 
+
+
 export default {
     name: 'Demo',
     data() {
         return {
-            file_names: []
+            file_names: [],
+            API_URL: process.env.VUE_APP_API_URL
         }
     },
     created: function() {
-        axios.get('http://localhost:8000/demo').then((res) => {
+        axios.get(this.API_URL + '/demo').then((res) => {
             this.file_names = res.data
         })
     }

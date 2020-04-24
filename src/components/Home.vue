@@ -9,7 +9,7 @@
         <canvas id="canvas"></canvas>
       </div>
       <div v-else id="waveform">
-        <av-waveform audio-src="http://localhost:8000/download_input">
+        <av-waveform :audio-src="API_URL + '/download_input'">
         </av-waveform>
       </div>
     </div>
@@ -19,8 +19,7 @@
         <canvas id="canvas_result_1"></canvas>
       </div>
       <div v-else>
-        <!-- <a href="http://localhost:8000/download_output_mmse">Download</a> -->
-        <av-waveform audio-src="http://localhost:8000/download_output_mmse">
+        <av-waveform :audio-src="API_URL + '/download_output_mmse'">
         </av-waveform>
       </div>
     </div>
@@ -30,7 +29,7 @@
         <canvas id="canvas_result_2"></canvas>
       </div>
       <div v-else>
-        <av-waveform audio-src="http://localhost:8000/download_output_dnn">
+        <av-waveform :audio-src="API_URL + '/download_output_dnn'">
         </av-waveform>
       </div>
     </div>
@@ -163,6 +162,7 @@ export default {
   name: 'Home',
   data () {
     return {
+      API_URL: process.env.VUE_APP_API_URL,
       isRecording: false,
       isInputPlaying: false,
       isOutputPlaying: false,
@@ -214,7 +214,7 @@ export default {
     })
   },
   created: function() {
-    socket = io('http://localhost:8000')
+    socket = io(this.API_URL)
     socket.on('noise_responses_1', (data) => {
       obj_result_1.frequencyArray = data
       loop_result(obj_result_1)
