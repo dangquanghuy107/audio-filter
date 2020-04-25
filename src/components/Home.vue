@@ -9,7 +9,7 @@
         <canvas id="canvas"></canvas>
       </div>
       <div v-else id="waveform">
-        <av-waveform :audio-src="API_URL + '/download_input'">
+        <av-waveform :audio-src="API_URL + '/api/download_input'">
         </av-waveform>
       </div>
     </div>
@@ -19,7 +19,7 @@
         <canvas id="canvas_result_1"></canvas>
       </div>
       <div v-else>
-        <av-waveform :audio-src="API_URL + '/download_output_mmse'">
+        <av-waveform :audio-src="API_URL + '/api/download_output_mmse'">
         </av-waveform>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <canvas id="canvas_result_2"></canvas>
       </div>
       <div v-else>
-        <av-waveform :audio-src="API_URL + '/download_output_dnn'">
+        <av-waveform :audio-src="API_URL + '/api/download_output_dnn'">
         </av-waveform>
       </div>
     </div>
